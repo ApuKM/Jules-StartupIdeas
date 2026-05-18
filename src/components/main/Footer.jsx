@@ -5,9 +5,9 @@ import { MdEmail } from "react-icons/md";
 
 export default function Footer() {
   return (
-    <footer className="bg-gray-900 text-gray-300 mt-10 md:mt-16">
+    <footer className="bg-gray-900 text-gray-300 mt-12 md:mt-18">
       <div className="mx-auto max-w-7xl px-5 sm:px-6 lg:px-8 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
           {/* About Section */}
           <div className="">
             <h2 className="text-xl font-semibold text-white mb-4">Jules</h2>
@@ -73,7 +73,7 @@ export default function Footer() {
 
         {/* Bottom Bar */}
         <div className="mt-10 border-t border-gray-700 pt-6 text-center text-sm">
-          © {new Date().getFullYear()} QurbaniHat. All rights reserved.
+          © {new Date().getFullYear()} Jules. All rights reserved.
         </div>
       </div>
     </footer>

@@ -3,10 +3,6 @@
 import React, { useEffect, useState } from "react";
 import { Button } from "../ui/button";
 import Link from "next/link";
-import Image from "next/image";
-import { LayoutDashboard } from "lucide-react";
-import { User } from "lucide-react";
-import { LogOut } from "lucide-react";
 import { X } from "lucide-react";
 import { Menu } from "lucide-react";
 import { SiStartrek } from "react-icons/si";
@@ -45,13 +41,13 @@ const Navbar = () => {
             <div className="hidden md:flex gap-8 items-center">
               <Link
                 href="/"
-                className="font-medium text-(--primary) hover:text-blue-600 transition-colors"
+                className="font-medium  hover:text-(--primary) transition-colors"
               >
                 Home
               </Link>
               <Link
                 href="/courses"
-                className="font-medium text-(--primary) hover:text-blue-600 transition-colors"
+                className="font-medium hover:text-(--primary) transition-colors"
               >
                 Ideas
               </Link>
@@ -60,13 +56,14 @@ const Navbar = () => {
             <div className="hidden md:flex items-center gap-4">
                   <Link
                     href="/login"
-                    className="font-medium text-(--primary) hover:text-blue-600 transition-colors"
+                    className="font-medium hover:text-(--primary) transition-colors"
                   >
                     Login
                   </Link>
                   <Link href="/register">
                     <Button
-                      className="font-bold bg-(--primary) rounded-full px-8 shadow-lg shadow-blue-600/20"
+                    size="lg"
+                      className=" text-white font-bold bg-(--primary) rounded-full px-5 shadow-lg shadow-blue-600/20"
                     >
                       Join Free
                     </Button>
