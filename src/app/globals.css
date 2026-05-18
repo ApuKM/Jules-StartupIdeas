@@ -1,8 +1,8 @@
 @import "tailwindcss";
+@import "@heroui/styles"; 
 
 
 :root{
   --primary: #023e8a;
-  /* --secondary:  */
 }
 
