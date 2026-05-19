@@ -46,10 +46,28 @@ const Navbar = () => {
                 Home
               </Link>
               <Link
-                href="/courses"
+                href="/ideas"
                 className="font-medium hover:text-(--primary) transition-colors"
               >
                 Ideas
+              </Link>
+              <Link
+                href="/add-ideas"
+                className="font-medium hover:text-(--primary) transition-colors"
+              >
+                Add Ideas
+              </Link>
+              <Link
+                href=""
+                className="font-medium hover:text-(--primary) transition-colors"
+              >
+                My Ideas
+              </Link>
+              <Link
+                href="/courses"
+                className="font-medium hover:text-(--primary) transition-colors"
+              >
+                My Interactions
               </Link>
             </div>
 
