@@ -15,7 +15,7 @@ const Banner = () => {
   return (
     <div className={`${ubuntu.className}`}>
       <section className="relative overflow-hidden py-12 md:py-18">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 bg-[url('/images/bg.jpg')] bg-cover bg-center bg-no-repeat h-auto ">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 bg-[url('/images/bg.jpg')] bg-cover bg-center bg-no-repeat h-auto rounded-xl">
           <div className="grid place-items-center py-15">
             {/* <div className="absolute inset-0 blur-2xl"></div> */}
             <div className="space-y-8 text-center">
@@ -40,7 +40,6 @@ const Banner = () => {
               <div className="flex flex-col sm:flex-row justify-center gap-4 pt-4">
                 <Button
                   href="/courses"
-                  variant="ghost"
                   className="h-14 px-8 text-lg font-bold bg-(--primary) text-white rounded-full shadow-2xl shadow-blue-600/30 group"
                 >
                   Explore Ideas
@@ -48,7 +47,6 @@ const Banner = () => {
                 </Button>
 
                 <Button
-                  variant="ghost"
                   className="h-14 px-8 text-lg font-bold rounded-full text-(--primary) group"
                 >
                   <Play className="mr-2 fill-slate-900 group-hover:scale-110 transition-transform" />

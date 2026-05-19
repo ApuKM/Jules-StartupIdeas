@@ -58,13 +58,13 @@ const Navbar = () => {
                 Add Ideas
               </Link>
               <Link
-                href=""
+                href="/my-ideas"
                 className="font-medium hover:text-(--primary) transition-colors"
               >
                 My Ideas
               </Link>
               <Link
-                href="/courses"
+                href="/my-interactions"
                 className="font-medium hover:text-(--primary) transition-colors"
               >
                 My Interactions
@@ -81,7 +81,7 @@ const Navbar = () => {
                   <Link href="/register">
                     <Button
                     size="lg"
-                      className=" text-white font-bold bg-(--primary) rounded-full px-5 shadow-lg shadow-blue-600/20"
+                      className=" text-white font-semibold bg-(--primary) rounded-full px-5 shadow-lg shadow-blue-600/20"
                     >
                       Join Free
                     </Button>
