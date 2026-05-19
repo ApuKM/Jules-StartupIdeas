@@ -11,7 +11,7 @@ const SearchBar = () => {
 
       <input
         type="text"
-        placeholder="Search for courses (e.g. Next.js, Web Design...)"
+        placeholder="Search for ideas"
         className="flex-1 h-14 px-4 outline-none bg-transparent text-slate-700 placeholder:text-slate-400"
       />
 
