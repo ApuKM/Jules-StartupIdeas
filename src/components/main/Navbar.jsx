@@ -1,21 +1,38 @@
-"use client"
+"use client";
 
 import React, { useEffect, useState } from "react";
-import { Button } from "../ui/button";
 import Link from "next/link";
 import { X } from "lucide-react";
 import { Menu } from "lucide-react";
 import { SiStartrek } from "react-icons/si";
+import { authClient } from "@/lib/auth-client";
+import { Avatar } from "@heroui/react";
+import { Button } from "@heroui/react";
+import { useRouter } from "next/navigation";
 
 const Navbar = () => {
-    const[isMenuOpen, setIsMenuOpen] = useState(false);
-    const [scrolled, setScrolled] = useState(false);
+  const { data: session, isPending } = authClient.useSession();
+  console.log(session);
+  const router = useRouter()
 
-    useEffect(()=> {
-        const handleScroll = () => setScrolled(window.scrollY > 10)
-        window.addEventListener("scroll", handleScroll)
-        return () => window.removeEventListener("scroll", handleScroll)
-    }, [])
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+
+  const handleLogOut = async () => {
+    await authClient.signOut({
+      fetchOptions: {
+        onSuccess: () => {
+          router.push("/login"); // redirect to login page
+        },
+      },
+    });
+  };
+
+  useEffect(() => {
+    const handleScroll = () => setScrolled(window.scrollY > 10);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
   return (
     <div>
       <nav
@@ -51,42 +68,68 @@ const Navbar = () => {
               >
                 Ideas
               </Link>
-              <Link
-                href="/add-ideas"
-                className="font-medium hover:text-(--primary) transition-colors"
-              >
-                Add Ideas
-              </Link>
-              <Link
-                href="/my-ideas"
-                className="font-medium hover:text-(--primary) transition-colors"
-              >
-                My Ideas
-              </Link>
-              <Link
-                href="/my-interactions"
-                className="font-medium hover:text-(--primary) transition-colors"
-              >
-                My Interactions
-              </Link>
+              {session?.user ? (
+                <div className="flex items-center gap-8">
+                  <Link
+                    href="/add-ideas"
+                    className="font-medium hover:text-(--primary) transition-colors"
+                  >
+                    Add Ideas
+                  </Link>
+                  <Link
+                    href="/my-ideas"
+                    className="font-medium hover:text-(--primary) transition-colors"
+                  >
+                    My Ideas
+                  </Link>
+                  <Link
+                    href="/my-interactions"
+                    className="font-medium hover:text-(--primary) transition-colors"
+                  >
+                    My Interactions
+                  </Link>
+                </div>
+              ) : (
+                ""
+              )}
             </div>
 
             <div className="hidden md:flex items-center gap-4">
-                  <Link
-                    href="/login"
-                    className="font-medium hover:text-(--primary) transition-colors"
-                  >
-                    Login
-                  </Link>
-                  <Link href="/register">
-                    <Button
-                    size="lg"
-                      className=" text-white font-semibold bg-(--primary) rounded-full px-5 shadow-lg shadow-blue-600/20"
-                    >
-                      Join Free
+              <>
+                {session?.user ? (
+                  <div className="flex items-center gap-5">
+                    <Avatar size="sm">
+                      <Avatar.Image
+                        alt="User"
+                        src={session?.user?.image}
+                        referrerPolicy="no-referrer"
+                      />
+                      <Avatar.Fallback>
+                        {session?.user?.name?.charAt(0)}
+                      </Avatar.Fallback>
+                    </Avatar>
+
+                    <Button variant="danger-soft" className={"font-medium"} onClick={handleLogOut}>
+                      SignOut
                     </Button>
-                  </Link>
-      
+                  </div>
+                ) : (
+                  <div className="flex items-center gap-5">
+                    <Link href={"/login"}>
+                      <Button variant="ghost" className={"font-medium"}>
+                        Login
+                      </Button>
+                    </Link>
+                    <Link href={"/register"}>
+                      <Button
+                        className={"bg-(--primary) text-white font-medium"}
+                      >
+                        Join Free
+                      </Button>
+                    </Link>
+                  </div>
+                )}
+              </>
             </div>
 
             <div className="md:hidden flex items-center">
@@ -120,37 +163,35 @@ const Navbar = () => {
               Ideas
             </Link>
 
-            <div className="pt-4 border-t border-border mt-4">
+            <div className="pt-4 border-t border-border mt-4 space-y-4">
               <div className="grid grid-cols-2 gap-4">
                 <Link href="/login">
-                  <Button
-                    href="/login"
-                    variant="bordered"
-                    className="rounded-xl"
-                  >
+                  <Button size="sm" variant="ghost" className={"font-medium"}>
                     Login
                   </Button>
                 </Link>
                 <Link href="/register">
-                  <Button
-                    href="/register"
-                    color="primary"
-                    className="rounded-xl"
-                  >
-                    Join Free
-                  </Button>
+                    <Button
+                      size="sm"
+                      className={"bg-(--primary) font-medium text-white"}
+                    >
+                      Join Free
+                    </Button>
                 </Link>
               </div>
 
-              <div className="flex flex-col gap-2">
-                <p className="px-4 text-xs font-bold text-muted-foreground uppercase tracking-wider mb-3">
+              <div className="flex flex-col">
+                <p className=" text-xs font-bold text-muted-foreground uppercase tracking-wider mb-3">
                   Account
                 </p>
-                <button
-                  className="block w-full text-left px-4 py-3 text-base font-medium text-red-500 hover:bg-red-50 rounded-xl cursor-pointer"
-                >
-                  Log Out
-                </button>
+                  <Button
+                    size="sm"
+                    variant="danger-soft"
+                    className={"font-medium"}
+                    onClick={handleLogOut}
+                  >
+                    Sign Out
+                  </Button>
               </div>
             </div>
           </div>

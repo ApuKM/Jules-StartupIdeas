@@ -7,8 +7,33 @@ import Link from 'next/link';
 import { Mail, Lock, ArrowRight } from 'lucide-react';
 
 import Image from 'next/image';
+import { useRouter } from 'next/navigation';
+import toast from 'react-hot-toast';
+import { authClient } from '@/lib/auth-client';
+
 
 export default function Login() {
+
+      const router = useRouter();
+      const handleLogin = async (e) => {
+        e.preventDefault();
+        const formData = new FormData(e.currentTarget);
+        const { email, password } = Object.fromEntries(
+          formData.entries(),
+        );
+        // console.log(registerData);
+        const { data, error } = await authClient.signIn.email({
+          email,
+          password,
+        });
+    
+        if (error) {
+        //   console.log(error);
+          toast.error("Login failed");
+          return;
+        }
+        router.push("/");
+      };
 
     return (
         <div className="min-h-[80vh] flex flex-col bg-slate-50 py-12">
@@ -49,6 +74,7 @@ export default function Login() {
 
                         <form
                             className="space-y-6"
+                            onSubmit={handleLogin}
                         >
                             <div className="space-y-2">
                                 <label
@@ -63,7 +89,6 @@ export default function Login() {
                                     placeholder="Enter your email"
                                     type="email"
                                     name="email"
-                                    startContent={<Mail className="w-5 h-5 text-slate-400" />}
                                     className="border-2 border-slate-200 hover:border-blue-600/50 focus-within:border-blue-600 transition-all duration-300 h-14 bg-white w-full rounded-2xl"
                                 />
                             </div>
@@ -81,7 +106,6 @@ export default function Login() {
                                     placeholder="••••••••"
                                     type="password"
                                     name="password"
-                                    startContent={<Lock className="w-5 h-5 text-slate-400" />}
                                     className="border-2 border-slate-200 hover:border-blue-600/50 focus-within:border-blue-600 transition-all duration-300 h-14 bg-white w-full rounded-2xl"
                                 />
                             </div>

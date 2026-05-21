@@ -5,8 +5,8 @@ import { Input } from "@heroui/react";
 import { Chip } from "@heroui/react";
 import { Separator } from "@heroui/react";
 import { Card, CardHeader } from "@heroui/react";
-import { MessageSquare } from "lucide-react";
 import React from "react";
+
 
 const comments = [
   {
@@ -30,8 +30,8 @@ const comments = [
 
 const Comments = () => {
   return (
-    <div>
-      <Card className="border border-white/10 bg-white/5 backdrop-blur-md">
+
+      <Card className="border border-white/10 bg-white/5 backdrop-blur-md mt-5">
         <CardHeader className="flex items-center">
           <div className="text-center space-y-4">
             <h2 className="text-xl font-semibold">Comments</h2>
@@ -121,7 +121,6 @@ const Comments = () => {
           </div>
         </Card.Content>
       </Card>
-    </div>
   );
 };
 

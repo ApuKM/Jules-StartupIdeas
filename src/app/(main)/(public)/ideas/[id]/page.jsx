@@ -1,28 +1,14 @@
 "use client";
 
 import {
-  ArrowLeft,
   BadgeInfo,
-  CalendarClock,
   CircleDollarSign,
-  Edit3,
-  MessageSquare,
-  PencilLine,
-  Plus,
-  Trash2,
   Users,
-  Lightbulb,
 } from "lucide-react";
 
 import {
-  Avatar,
-  Button,
   Card,
-  CardHeader,
   Chip,
-  Input,
-  Separator,
-  TextArea,
 } from "@heroui/react";
 import Image from "next/image";
 import Comments from "@/components/main/Comments";
