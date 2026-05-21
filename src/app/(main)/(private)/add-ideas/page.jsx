@@ -7,7 +7,7 @@ export default function AddIdeasPage() {
         <div className="max-w-4xl mx-auto px-4 py-16">
             <div className="bg-white p-8 md:p-12 rounded-lg border border-slate-200 shadow-2xl space-y-10">
                 <div className="space-y-2 text-center">
-                    <h1 className="text-4xl font-black text-slate-900">
+                    <h1 className="text-4xl md:text-5xl font-bold text-slate-900">
                         Share your{' '}
                         <span className="text-(--primary)">Idea</span>
                     </h1>

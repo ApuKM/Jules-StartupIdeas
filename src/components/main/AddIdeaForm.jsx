@@ -1,5 +1,6 @@
 "use client";
 
+import { addIdea } from "@/lib/actions";
 import {
   Button,
   Input,
@@ -14,6 +15,7 @@ import {
 } from "@heroui/react";
 
 import { BookPlus, Image, List } from "lucide-react";
+import toast from "react-hot-toast";
 
 const CATEGORIES = [
   "Tech",
@@ -31,9 +33,19 @@ const CATEGORIES = [
 ];
 
 const AddIdeaForm = () => {
+  const handleAction = async (formData) => {
+    try {
+      const result = await addIdea(formData);
+      console.log("Success:", result);
+      toast.success("Idea added successfully");
+    } catch (error) {
+      console.error("Error:", error);
+      toast.error(error.message || "Something went wrong");
+    }
+  };
   return (
     <div>
-      <form className="space-y-8">
+      <form action={handleAction} className="space-y-8">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           <div className="md:col-span-2 space-y-2">
             <label
@@ -44,6 +56,7 @@ const AddIdeaForm = () => {
             </label>
             <Input
               id="title"
+              name="ideaTitle"
               required
               placeholder="e.g. Next.js 15 Masterclass"
               className="w-full h-14 border-2 border-slate-200 hover:border-blue-600/50 focus-within:border-blue-600 rounded-2xl bg-white transition-all duration-300 shadow-none"
@@ -59,6 +72,7 @@ const AddIdeaForm = () => {
             </label>
             <Input
               id="short-description"
+              name="shortDescription"
               required
               placeholder="An idea is like a virus..."
               className="w-full h-14 border-2 border-slate-200 hover:border-blue-600/50 focus-within:border-blue-600 rounded-2xl bg-white transition-all duration-300 shadow-none"
@@ -74,6 +88,7 @@ const AddIdeaForm = () => {
             </label>
             <TextArea
               id="description"
+              name="detailedDescription"
               required
               placeholder="What will students learn in this course?"
               className="w-full h-32 border-2 border-slate-200 hover:border-blue-600/50 focus-within:border-blue-600 rounded-2xl bg-white transition-all duration-300 shadow-none resize-none"
@@ -89,6 +104,7 @@ const AddIdeaForm = () => {
             </label>
             <Input
               id="imageUrl"
+              name="imageURL"
               required
               type="url"
               placeholder="https://images.unsplash.com/..."
@@ -105,6 +121,7 @@ const AddIdeaForm = () => {
             </label>
             <Select
               id="category"
+              name="category"
               required
               placeholder="Select a category"
               className="w-full"
@@ -145,6 +162,7 @@ const AddIdeaForm = () => {
             </label>
             <Input
               id="price"
+              name="estimatedBudget"
               type="number"
               placeholder="0.00"
               className="w-full h-14 border-2 border-slate-200 hover:border-blue-600/50 focus-within:border-blue-600 rounded-2xl bg-white transition-all duration-300 shadow-none"
@@ -160,6 +178,7 @@ const AddIdeaForm = () => {
             </label>
             <Input
               id="tags"
+              name="tags"
               type="text"
               placeholder="e.g. 12h 30m"
               className="w-full h-14 border-2 border-slate-200 hover:border-blue-600/50 focus-within:border-blue-600 rounded-2xl bg-white transition-all duration-300 shadow-none"
@@ -174,6 +193,7 @@ const AddIdeaForm = () => {
             </label>
             <Input
               id="target-aud"
+              name="targetAudience"
               type="text"
               placeholder="Students, fresh graduates"
               className="w-full h-14 border-2 border-slate-200 hover:border-blue-600/50 focus-within:border-blue-600 rounded-2xl bg-white transition-all duration-300 shadow-none"
@@ -188,6 +208,7 @@ const AddIdeaForm = () => {
             </label>
             <Input
               id="problem-statement"
+              name="problemStatement"
               type="text"
               placeholder="Many entrepreneurs struggle...."
               className="w-full h-14 border-2 border-slate-200 hover:border-blue-600/50 focus-within:border-blue-600 rounded-2xl bg-white transition-all duration-300 shadow-none"
@@ -202,6 +223,7 @@ const AddIdeaForm = () => {
             </label>
             <Input
               id="proposed-solution"
+              name="proposedSolution"
               type="text"
               placeholder="Provide an all-in-one startup"
               className="w-full h-14 border-2 border-slate-200 hover:border-blue-600/50 focus-within:border-blue-600 rounded-2xl bg-white transition-all duration-300 shadow-none"
