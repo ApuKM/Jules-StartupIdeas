@@ -5,9 +5,11 @@ import { Button } from "@heroui/react";
 import { Brain } from "lucide-react";
 import React from "react";
 
-const IdeasPage = async () => {
-  const ideas = await getIdeas();
-  console.log(ideas);
+const IdeasPage = async ({searchParams}) => {
+  const sParams = await searchParams;
+
+  const ideas = await getIdeas(sParams?.query || "");
+  // console.log(ideas);
 
   return (
     <div className="min-h-screen bg-slate-50">
