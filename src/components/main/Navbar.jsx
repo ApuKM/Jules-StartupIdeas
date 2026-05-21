@@ -12,7 +12,7 @@ import { useRouter } from "next/navigation";
 
 const Navbar = () => {
   const { data: session, isPending } = authClient.useSession();
-  console.log(session);
+  // console.log(session);
   const router = useRouter()
 
   const [isMenuOpen, setIsMenuOpen] = useState(false);

@@ -1,10 +1,14 @@
 import IdeaCard from "@/components/main/IdeaCard";
 import IdeasHeader from "@/components/main/IdeasHeader";
+import { getIdeas } from "@/lib/data";
 import { Button } from "@heroui/react";
 import { Brain } from "lucide-react";
 import React from "react";
 
-const IdeasPage = () => {
+const IdeasPage = async () => {
+  const ideas = await getIdeas();
+  console.log(ideas);
+
   return (
     <div className="min-h-screen bg-slate-50">
       <IdeasHeader />
@@ -20,9 +24,11 @@ const IdeasPage = () => {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          <IdeaCard />
-          <IdeaCard />
-          <IdeaCard />
+          {
+            ideas?.map((idea) => (
+              <IdeaCard key={idea._id} idea={idea}/>
+            ))
+          }
         </div>
       </main>
     </div>
