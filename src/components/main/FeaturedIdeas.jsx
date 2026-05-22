@@ -5,16 +5,16 @@ import Link from "next/link";
 
 const FeaturedCourses = async () => {
   const featuredIdeas = await getFeaturedIdeas();
-  console.log(featuredIdeas);
+  // console.log(featuredIdeas);
 
   return (
     <section className="mt-12 md:mt-18 py-12 bg-slate-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="space-y-4 text-center mb-6">
-          <h2 className="text-(--primary) inline-flex p-2 rounded-md bg-white font-bold uppercase tracking-widest text-sm">
+          <h2 className="text-(--primary) inline-flex p-2 rounded-md bg-white font-bold uppercase tracking-wide text-sm">
             Top Ideas
           </h2>
-          <h3 className="text-4xl font-extrabold text-slate-900">
+          <h3 className="text-4xl md:text-5xl font-bold text-zinc-800">
             Featured Courses
           </h3>
           <p className="text-slate-600 max-w-xl mx-auto text-center">
@@ -22,7 +22,7 @@ const FeaturedCourses = async () => {
             to shape the future.
           </p>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-8">
           {featuredIdeas?.map((fIdea) => (
             <FeaturedCard key={fIdea?._id} fIdea={fIdea} />
           ))}

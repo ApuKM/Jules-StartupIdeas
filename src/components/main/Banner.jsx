@@ -1,10 +1,10 @@
 import Image from "next/image";
 import React from "react";
-import { Button } from "../ui/button";
 import { Play } from "lucide-react";
 import { ArrowRight } from "lucide-react";
 import { Star } from "lucide-react";
 import { Ubuntu } from "next/font/google";
+import { Button } from "@heroui/react";
 
 const ubuntu = Ubuntu({
   subsets: ["latin"],
@@ -48,7 +48,9 @@ const Banner = () => {
 
                 <Button
                   className="h-14 px-8 text-lg font-bold rounded-full text-(--primary) group"
+                  variant="outline"
                 >
+                  
                   <Play className="mr-2 fill-slate-900 group-hover:scale-110 transition-transform" />
                   Watch Demo
                 </Button>
