@@ -77,12 +77,12 @@ export default async function IdeaDetailsPage({ params }) {
                 className="h-full w-full object-cover rounded-md"
               />
 
-              <div className="absolute bottom-4 left-4 right-4 rounded-2xl border border-white/10 bg-blue-100/70 p-4 backdrop-blur-md">
+              {/* <div className="absolute bottom-4 left-4 right-4 rounded-2xl border border-white/10 bg-blue-100/70 p-4 backdrop-blur-md">
                 <div className="flex items-center gap-2 text-sm text-(--primary)">
                   <BadgeInfo className="h-4 w-4" />
                   {tags.join(" ")}
                 </div>
-              </div>
+              </div> */}
             </div>
           </div>
         </Card>

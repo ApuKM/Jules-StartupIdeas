@@ -1,6 +1,7 @@
 "use client";
 
 import { addIdea } from "@/lib/actions";
+import { authClient } from "@/lib/auth-client";
 import {
   Button,
   Input,
@@ -35,7 +36,11 @@ const CATEGORIES = [
 const AddIdeaForm = () => {
   const handleAction = async (formData) => {
     try {
-      const result = await addIdea(formData);
+      const { data: session } = await authClient.getSession();
+      const user = session?.user;
+      const {data: tokenData} = await authClient.token();
+      console.log(tokenData)
+      const result = await addIdea(formData, user, tokenData);
       console.log("Success:", result);
       toast.success("Idea added successfully");
     } catch (error) {
@@ -123,6 +128,7 @@ const AddIdeaForm = () => {
               id="category"
               name="category"
               required
+              aria-label="category"
               placeholder="Select a category"
               className="w-full"
             >

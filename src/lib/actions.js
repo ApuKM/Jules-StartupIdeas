@@ -1,21 +1,27 @@
 "use server";
 import { revalidatePath } from "next/cache";
 
-export async function addIdea(formData) {
+export async function addIdea(formData, user, tokenData) {
   const data = Object.fromEntries(formData.entries());
-  //   console.log(data);
+  const { name, email } = user;
   data.tags = data.tags.split(",");
   data.estimatedBudget = Number(data.estimatedBudget);
+  data.userName = name;
+  data.userEmail = email;
+
   const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/add-idea`, {
     method: "POST",
     headers: {
-      "Content-type": "Application/json",
+      "Content-type": "application/json",
+      authorization: `Bearer ${tokenData.token}`
     },
     body: JSON.stringify(data),
   });
+  console.log(res)
   if (!res.ok) {
     throw new Error("Failed to add idea");
   }
   revalidatePath("/ideas");
+  revalidatePath("/my-ideas");
   return { success: true };
 }
