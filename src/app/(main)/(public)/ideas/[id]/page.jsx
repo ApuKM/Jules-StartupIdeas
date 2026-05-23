@@ -5,11 +5,17 @@ import Image from "next/image";
 import Comments from "@/components/main/Comments";
 import Problems from "@/components/main/Problems";
 import { getIdeaById } from "@/lib/data";
+import { auth } from "@/lib/auth";
+import { headers } from "next/headers";
 
 export default async function IdeaDetailsPage({ params }) {
   const { id } = await params;
-  const idea = await getIdeaById(id);
-  console.log(idea);
+  const {token} = await auth.api.getToken({
+    headers: await headers()
+  })
+  console.log(token)
+  const idea = await getIdeaById(id, token);
+  // console.log(idea);
   const {
     imageURL,
     category,
@@ -97,7 +103,7 @@ export default async function IdeaDetailsPage({ params }) {
           />
 
           {/* comments */}
-          <Comments />
+          <Comments id={id}/>
         </div>
       </div>
     </div>
