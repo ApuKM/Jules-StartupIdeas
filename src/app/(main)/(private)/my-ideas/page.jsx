@@ -52,7 +52,7 @@ export default async function DashboardPage() {
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="text-center mb-8 space-y-2">
-          <h1 className="text-4xl md:text-5xl font-bold text-slate-900">My <span className="text-(--primary)">Idea</span></h1>
+          <h1 className="text-4xl md:text-5xl font-bold text-slate-900">My <span className="text-(--primary)">Ideas</span></h1>
           <p className="text-slate-500 font-medium">
             Manage and review all your submitted ideas in one place.
           </p>
@@ -123,7 +123,7 @@ export default async function DashboardPage() {
 
               <div className="mt-6">
                 <Link href="/ideas">
-                  <Button className="rounded-full px-5">Browse Courses</Button>
+                  <Button className="rounded-full px-5 bg-(--primary)">Browse Ideas</Button>
                 </Link>
               </div>
             </div>
