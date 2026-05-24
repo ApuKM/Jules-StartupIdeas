@@ -6,14 +6,14 @@ import { X } from "lucide-react";
 import { Menu } from "lucide-react";
 import { SiStartrek } from "react-icons/si";
 import { authClient } from "@/lib/auth-client";
-import { Avatar } from "@heroui/react";
 import { Button } from "@heroui/react";
 import { useRouter } from "next/navigation";
+import { ProfileDropDown } from "./ProfileDropDown";
 
 const Navbar = () => {
   const { data: session, isPending } = authClient.useSession();
   // console.log(session);
-  const router = useRouter()
+  const router = useRouter();
 
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
@@ -98,7 +98,7 @@ const Navbar = () => {
               <>
                 {session?.user ? (
                   <div className="flex items-center gap-5">
-                    <Avatar size="sm">
+                    {/* <Avatar size="sm">
                       <Avatar.Image
                         alt="User"
                         src={session?.user?.image}
@@ -107,9 +107,14 @@ const Navbar = () => {
                       <Avatar.Fallback>
                         {session?.user?.name?.charAt(0)}
                       </Avatar.Fallback>
-                    </Avatar>
+                    </Avatar> */}
+                    <ProfileDropDown user={session?.user} handleLogOut={handleLogOut}/>
 
-                    <Button variant="danger-soft" className={"font-medium"} onClick={handleLogOut}>
+                    <Button
+                      variant="danger-soft"
+                      className={"font-medium"}
+                      onClick={handleLogOut}
+                    >
                       SignOut
                     </Button>
                   </div>
@@ -171,12 +176,12 @@ const Navbar = () => {
                   </Button>
                 </Link>
                 <Link href="/register">
-                    <Button
-                      size="sm"
-                      className={"bg-(--primary) font-medium text-white"}
-                    >
-                      Join Free
-                    </Button>
+                  <Button
+                    size="sm"
+                    className={"bg-(--primary) font-medium text-white"}
+                  >
+                    Join Free
+                  </Button>
                 </Link>
               </div>
 
@@ -184,14 +189,14 @@ const Navbar = () => {
                 <p className=" text-xs font-bold text-muted-foreground uppercase tracking-wider mb-3">
                   Account
                 </p>
-                  <Button
-                    size="sm"
-                    variant="danger-soft"
-                    className={"font-medium"}
-                    onClick={handleLogOut}
-                  >
-                    Sign Out
-                  </Button>
+                <Button
+                  size="sm"
+                  variant="danger-soft"
+                  className={"font-medium"}
+                  onClick={handleLogOut}
+                >
+                  Sign Out
+                </Button>
               </div>
             </div>
           </div>

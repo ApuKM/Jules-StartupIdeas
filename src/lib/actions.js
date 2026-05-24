@@ -41,10 +41,27 @@ export async function addComment(commentText, tokenData, ideaId, user){
     },
     body: JSON.stringify(payload)
   })
-  console.log(res)
+  // console.log(res)
   if (!res.ok) {
     throw new Error("Failed to add comment");
   }
   revalidatePath(`/ideas/${ideaId}`);
+  return { success: true };
+}
+
+export async function editProfile(user, formData, tokenData){
+  const data = Object.fromEntries(formData.entries());
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/user/edit/${user._id}`, {
+    method: "PATCH",
+    headers: {
+      "Content-Type": "application/json",
+      authorization: `Bearer ${tokenData.token}`
+    },
+    body: JSON.stringify(data)
+  })
+   if (!res.ok) {
+    throw new Error("Failed to add comment");
+  }
+  revalidatePath("/");
   return { success: true };
 }

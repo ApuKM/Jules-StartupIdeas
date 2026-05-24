@@ -7,8 +7,9 @@ import { getCommentsWithIdeaId } from "@/lib/data";
 import { TextArea, Button, Avatar, Chip, Card, CardHeader } from "@heroui/react";
 import toast from "react-hot-toast";
 import { EditModal } from "./EditModal";
+import { DeleteAlert } from "./DeleteAlert";
 
-const Comments = ({ id }) => {
+const Comments = ({ ideaId }) => {
   const [comment, setComment] = useState("");
   const [comments, setComments] = useState([]);
   const { data: session } = authClient.useSession();
@@ -19,7 +20,7 @@ const Comments = ({ id }) => {
       try {
         const { data: tokenData } = await authClient.token();
 
-        const fetchedComments = await getCommentsWithIdeaId(id, tokenData);
+        const fetchedComments = await getCommentsWithIdeaId(ideaId, tokenData);
 
         setComments(fetchedComments || []);
       } catch (error) {
@@ -28,8 +29,8 @@ const Comments = ({ id }) => {
       }
     };
 
-    if (id) loadComments();
-  }, [id]);
+    if (ideaId) loadComments();
+  }, [ideaId]);
 
   const handleComments = async () => {
     if (!comment.trim()) return;
@@ -37,8 +38,8 @@ const Comments = ({ id }) => {
     try {
       const { data: tokenData } = await authClient.token();
 
-      await addComment(comment, tokenData, id, user);
-      const updated = await getCommentsWithIdeaId(id, tokenData);
+      await addComment(comment, tokenData, ideaId, user);
+      const updated = await getCommentsWithIdeaId(ideaId, tokenData);
       setComments(updated || []);
 
       setComment("");
@@ -106,10 +107,8 @@ const Comments = ({ id }) => {
 
                   {c.userEmail === user?.email && (
                     <div className="flex justify-end mt-3 gap-2">
-                      <EditModal id={c._id} />
-                      <Button size="sm" variant="danger">
-                        Delete
-                      </Button>
+                      <EditModal currentComment={c.comment} commentId={c._id} ideaId={ideaId}/>
+                      <DeleteAlert commentId={c._id} ideaId={ideaId}/>
                     </div>
                   )}
                 </div>

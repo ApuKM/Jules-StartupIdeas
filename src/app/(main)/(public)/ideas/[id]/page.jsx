@@ -103,7 +103,7 @@ export default async function IdeaDetailsPage({ params }) {
           />
 
           {/* comments */}
-          <Comments id={id}/>
+          <Comments ideaId={id}/>
         </div>
       </div>
     </div>
