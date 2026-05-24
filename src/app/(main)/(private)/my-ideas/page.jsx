@@ -6,6 +6,7 @@ import { auth } from "@/lib/auth";
 import { headers } from "next/headers";
 import { redirect } from "next/navigation";
 import { Verified } from "lucide-react";
+import ProfileCard from "@/components/main/ProfileCard";
 
 export default async function DashboardPage() {
   const { token } = await auth.api.getToken({
@@ -17,6 +18,7 @@ export default async function DashboardPage() {
     headers: await headers(),
   });
   // console.log(session);
+  const user = session?.user;
 
   if (!session?.user || !token) {
     redirect("/login");
@@ -51,48 +53,17 @@ export default async function DashboardPage() {
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="text-center mb-8 space-y-2">
-          <h1 className="text-4xl md:text-5xl font-bold text-slate-900">My <span className="text-(--primary)">Ideas</span></h1>
-          <p className="text-slate-500 font-medium">
-            Manage and review all your submitted ideas in one place.
-          </p>
-        </div>
+      <div className="text-center mb-8 space-y-2">
+        <h1 className="text-4xl md:text-5xl font-bold text-slate-900">
+          My <span className="text-(--primary)">Ideas</span>
+        </h1>
+        <p className="text-slate-500 font-medium">
+          Manage and review all your submitted ideas in one place.
+        </p>
+      </div>
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
         {/* Profile Card */}
-        <div className="lg:col-span-1">
-          <div className="relative overflow-hidden rounded-3xl border border-slate-200 bg-white/80 backdrop-blur-xl shadow-lg shadow-slate-200/60 p-6">
-            <div className="absolute inset-x-0 top-0 h-24 bg-linear-to-r from-indigo-500 via-blue-500 to-blue-800" />
-
-            <div className="relative pt-10">
-              <div className="w-24 h-24 rounded-full ring-4 ring-white shadow-xl overflow-hidden bg-slate-100">
-                <Image
-                  src={session?.user?.image}
-                  alt="profile"
-                  width={96}
-                  height={96}
-                  className="w-full h-full object-cover"
-                />
-              </div>
-
-              <h2 className="text-2xl font-bold text-slate-800 mt-5">
-                {session?.user?.name}
-              </h2>
-              <p className="text-sm text-slate-600 mt-1 wrap-break-word">
-                {session?.user?.email}
-              </p>
-
-              <div className="mt-6 flex items-center gap-2">
-                <span className="inline-flex items-center gap-1 rounded-full bg-blue-100 px-3 py-1 text-xs font-medium text-(--primary)">
-                  <Verified  className="w-4 h-4"/>
-                  Verified account
-                </span>
-                <span className="inline-flex items-center rounded-full bg-slate-100 px-3 py-1 text-xs font-medium text-slate-600">
-                  Creator
-                </span>
-              </div>
-            </div>
-          </div>
-        </div>
+        <ProfileCard user={user}/>
 
         {/* Ideas Section */}
         <div className="lg:col-span-2">
@@ -123,7 +94,9 @@ export default async function DashboardPage() {
 
               <div className="mt-6">
                 <Link href="/ideas">
-                  <Button className="rounded-full px-5 bg-(--primary)">Browse Ideas</Button>
+                  <Button className="rounded-full px-5 bg-(--primary)">
+                    Browse Ideas
+                  </Button>
                 </Link>
               </div>
             </div>
@@ -168,9 +141,9 @@ export default async function DashboardPage() {
                           Submitted idea
                         </span>
                         <Link href={`/ideas/${myIdea._id}`}>
-                        <span className="text-sm font-medium text-slate-700">
-                          View details
-                        </span>
+                          <span className="text-sm font-medium text-slate-700">
+                            View details
+                          </span>
                         </Link>
                       </div>
                     </div>

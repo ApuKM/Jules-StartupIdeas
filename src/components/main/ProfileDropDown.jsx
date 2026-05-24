@@ -1,12 +1,10 @@
 "use client";
 
-import { useState } from "react";
 import { ArrowRightFromSquare, Gear } from "@gravity-ui/icons";
 import { Avatar, Dropdown, Label } from "@heroui/react";
-import { ProfileModal } from "./ProfileModal";
+import Link from "next/link";
 
 export function ProfileDropDown({ user, handleLogOut }) {
-  const [isProfileOpen, setIsProfileOpen] = useState(false);
 
   return (
     <>
@@ -49,13 +47,14 @@ export function ProfileDropDown({ user, handleLogOut }) {
             <Dropdown.Item id="dashboard" textValue="Dashboard">
               <Label>Dashboard</Label>
             </Dropdown.Item>
-
+            
             <Dropdown.Item
               id="profile"
               textValue="Profile"
-              onPress={() => setIsProfileOpen(true)}
             >
+            <Link href={"/profile"}>
               <Label>Profile</Label>
+            </Link>
             </Dropdown.Item>
 
             <Dropdown.Item id="settings" textValue="Settings">
@@ -78,11 +77,6 @@ export function ProfileDropDown({ user, handleLogOut }) {
         </Dropdown.Popover>
       </Dropdown>
 
-      <ProfileModal
-        user={user}
-        isOpen={isProfileOpen}
-        onOpenChange={setIsProfileOpen}
-      />
     </>
   );
 }

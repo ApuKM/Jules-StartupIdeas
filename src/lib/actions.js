@@ -49,19 +49,30 @@ export async function addComment(commentText, tokenData, ideaId, user){
   return { success: true };
 }
 
-export async function editProfile(user, formData, tokenData){
-  const data = Object.fromEntries(formData.entries());
-    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/user/edit/${user._id}`, {
-    method: "PATCH",
-    headers: {
-      "Content-Type": "application/json",
-      authorization: `Bearer ${tokenData.token}`
-    },
-    body: JSON.stringify(data)
-  })
-   if (!res.ok) {
-    throw new Error("Failed to add comment");
+export async function editProfile(user, formData, tokenData) {
+  try {
+    const data = Object.fromEntries(formData.entries());
+
+    const res = await fetch(
+      `${process.env.NEXT_PUBLIC_API_URL}/user/edit/${user.id}`,
+      {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+          authorization: `Bearer ${tokenData.token}`,
+        },
+        body: JSON.stringify(data),
+      }
+    );
+
+    if (!res.ok) {
+      return { success: false };
+    }
+
+    revalidatePath("/profile");
+
+    return { success: true };
+  } catch (err) {
+    return { success: false };
   }
-  revalidatePath("/");
-  return { success: true };
 }
