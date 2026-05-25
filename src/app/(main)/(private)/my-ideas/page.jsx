@@ -54,7 +54,7 @@ export default async function DashboardPage() {
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
       <div className="text-center mb-8 space-y-2">
-        <h1 className="text-4xl md:text-5xl font-bold text-slate-900">
+        <h1 className="text-3xl md:text-4xl font-bold text-slate-900">
           My <span className="text-(--primary)">Ideas</span>
         </h1>
         <p className="text-slate-500 font-medium">
@@ -120,7 +120,7 @@ export default async function DashboardPage() {
 
                     <div className="flex flex-1 flex-col justify-between p-5 sm:p-6">
                       <div>
-                        <div className="flex items-start justify-between gap-4">
+                        <div className="flex items-start justify-between gap-6">
                           <div>
                             <h3 className="text-xl font-semibold text-slate-800 leading-tight">
                               {myIdea?.ideaTitle}

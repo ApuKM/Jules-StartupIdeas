@@ -37,3 +37,20 @@ export const getCommentsWithIdeaId = async (ideaId, tokenData) => {
   const data = await res.json();
   return data;
 };
+
+export const getCommentsByUserEmail = async (userEmail, token) => {
+  const res = await fetch(
+    `${process.env.NEXT_PUBLIC_API_URL}/user/${userEmail}/comments`,
+    {
+      method: "GET",
+      cache: "no-store",
+      headers: {
+        authorization: `Bearer ${token}`,
+      },
+    },
+  );
+  // console.log("STATUS:", res.status);
+  // console.log("CONTENT-TYPE:", res.headers.get("content-type"));
+  const data = await res.json();
+  return data;
+};
