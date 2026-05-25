@@ -7,9 +7,18 @@ import Problems from "@/components/main/Problems";
 import { getIdeaById } from "@/lib/data";
 import { auth } from "@/lib/auth";
 import { headers } from "next/headers";
+import { redirect } from "next/navigation";
 
 export default async function IdeaDetailsPage({ params }) {
   const { id } = await params;
+  const session = await auth.api.getSession({
+  headers: await headers(),
+});
+
+if (!session?.user) {
+  redirect("/login");
+}
+
   const {token} = await auth.api.getToken({
     headers: await headers()
   })
@@ -81,6 +90,7 @@ export default async function IdeaDetailsPage({ params }) {
                 alt={ideaTitle}
                 fill
                 className="h-full w-full object-cover rounded-md"
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
               />
 
               {/* <div className="absolute bottom-4 left-4 right-4 rounded-2xl border border-white/10 bg-blue-100/70 p-4 backdrop-blur-md">

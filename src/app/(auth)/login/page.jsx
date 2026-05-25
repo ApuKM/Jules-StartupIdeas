@@ -7,12 +7,16 @@ import Link from "next/link";
 import { Mail, Lock, ArrowRight } from "lucide-react";
 
 import Image from "next/image";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import toast from "react-hot-toast";
 import { authClient } from "@/lib/auth-client";
 
 export default function Login() {
   const router = useRouter();
+  const searchParams = useSearchParams()
+
+  const redirectTo = searchParams.get("redirect")
+
   const handleLogin = async (e) => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
@@ -28,13 +32,13 @@ export default function Login() {
       toast.error("Login failed");
       return;
     }
-    router.push("/");
+    router.push(redirectTo);
   };
 
   const handleLoginWithGoogle = async () => {
     const data = await authClient.signIn.social({
       provider: "google",
-      callbackURL: "/"
+      callbackURL: redirectTo,
     });
   };
 
