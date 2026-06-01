@@ -23,7 +23,7 @@ const MyInteractionsPage = async () => {
     redirect("/login");
   }
   const userComments = await getCommentsByUserEmail(user?.email, token);
-
+  // console.log(userComments)
   const commentsWithIdeas = await Promise.all(
     userComments.map(async (comment) => {
       const idea = await getIdeaById(comment?.ideaId, token);
@@ -37,7 +37,7 @@ const MyInteractionsPage = async () => {
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-      <div className="text-center mb-8 space-y-2">
+      <div className="text-center mb-8 space-y-5">
         <h1 className="text-3xl md:text-4xl font-bold text-slate-900">
           My <span className="text-(--primary)">Interactions</span>
         </h1>
@@ -84,12 +84,12 @@ const MyInteractionsPage = async () => {
             {commentsWithIdeas?.map((c) => (
               <div
                 key={c?._id}
-                className="group overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm transition-all duration-300 hover:shadow-xl"
+                className="group overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm transition-all duration-300 hover:shadow-xl p-5"
               >
-                <h2 className="text-center text-slate-800 text-lg">
+                <h2 className="text-center text-slate-800 text-lg mt-2">
                   {c?.idea?.ideaTitle}
                 </h2>
-                <div className="flex flex-col sm:flex-row gap-5">
+                <div className="flex flex-col sm:flex-row sm:items-center gap-5">
                   <div className="w-25 h-25 bg-slate-100 overflow-hidden rounded-full">
                     <Image
                       src={c?.idea?.imageURL}
@@ -103,12 +103,12 @@ const MyInteractionsPage = async () => {
                     <div>
                       <div className="flex items-start justify-between gap-6">
                         <div>
-                          <h3 className="text-xl font-semibold text-slate-800 leading-tight">
+                          <h3 className="text-lg font-semibold text-slate-800 leading-tight">
                             {c?.comment}
                           </h3>
 
-                          <p className="mt-2 text-sm text-slate-600">
-                            {ct?.idea?.title}
+                          <p className="mt-1 text-sm text-slate-600">
+                            {c?.idea?.category}
                           </p>
 
                           <p className="mt-2 text-sm text-slate-600">
@@ -123,7 +123,7 @@ const MyInteractionsPage = async () => {
                     </div>
 
                     <div className="mt-5 flex items-center justify-between">
-                      <span className="text-sm text-slate-500">Submitted</span>
+                      <span className="text-sm text-slate-500">Comment on Public</span>
                     </div>
                   </div>
                 </div>

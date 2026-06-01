@@ -53,7 +53,7 @@ export default async function DashboardPage() {
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-      <div className="text-center mb-8 space-y-2">
+      <div className="text-center mb-8 space-y-5">
         <h1 className="text-3xl md:text-4xl font-bold text-slate-900">
           My <span className="text-(--primary)">Ideas</span>
         </h1>
@@ -61,12 +61,9 @@ export default async function DashboardPage() {
           Manage and review all your submitted ideas in one place.
         </p>
       </div>
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
-        {/* Profile Card */}
-        <ProfileCard user={user}/>
-
+      <div className="grid grid-cols-1 gap-8 ">
         {/* Ideas Section */}
-        <div className="lg:col-span-2">
+        <div className="">
           {userIdeas?.length === 0 ? (
             <div className="rounded-3xl border border-dashed border-slate-300 bg-white p-12 text-center shadow-sm">
               <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-slate-100">

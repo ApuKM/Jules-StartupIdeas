@@ -13,9 +13,9 @@ import { authClient } from "@/lib/auth-client";
 
 export default function Login() {
   const router = useRouter();
-  const searchParams = useSearchParams()
+  const searchParams = useSearchParams();
 
-  const redirectTo = searchParams.get("redirect")
+  const redirectTo = searchParams.get("redirect");
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -32,14 +32,17 @@ export default function Login() {
       toast.error("Login failed");
       return;
     }
-    router.push(redirectTo);
+    router.push(redirectTo || "/");
   };
 
   const handleLoginWithGoogle = async () => {
-    const data = await authClient.signIn.social({
+    const { error } = await authClient.signIn.social({
       provider: "google",
       callbackURL: redirectTo,
     });
+    if (error) {
+      toast.error("Google login failed");
+    }
   };
 
   return (

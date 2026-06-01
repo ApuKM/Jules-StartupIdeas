@@ -1,5 +1,5 @@
 import Banner from "@/components/main/Banner";
-import FeaturedCourses from "@/components/main/FeaturedIdeas";
+import FeaturedIdeas from "@/components/main/FeaturedIdeas";
 import StatsSection from "@/components/main/Statistics";
 import Testmonial from "@/components/main/Testmonial";
 
@@ -12,7 +12,7 @@ export default function Home() {
         <Banner />
       </div>
       <StatsSection />
-      <FeaturedCourses />
+      <FeaturedIdeas />
       <Testmonial />
     </>
   );

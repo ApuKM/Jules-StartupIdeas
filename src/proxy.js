@@ -11,6 +11,7 @@ export async function proxy(request) {
     pathname === "/add-idea" ||
     pathname === "/my-ideas" ||
     pathname === "/profile" ||
+    pathname === "/my-interactions" ||
     pathname.startsWith("/ideas/");
 
   if (!isProtected) {

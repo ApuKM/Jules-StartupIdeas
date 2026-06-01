@@ -3,7 +3,7 @@ import FeaturedCard from "./FeaturedCard";
 import { getFeaturedIdeas } from "@/lib/data";
 import Link from "next/link";
 
-const FeaturedCourses = async () => {
+const FeaturedIdeas = async () => {
   const featuredIdeas = await getFeaturedIdeas();
   // console.log(featuredIdeas);
 
@@ -35,4 +35,4 @@ const FeaturedCourses = async () => {
   );
 };
 
-export default FeaturedCourses;
+export default FeaturedIdeas;

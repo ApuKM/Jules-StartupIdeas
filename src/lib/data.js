@@ -49,8 +49,8 @@ export const getCommentsByUserEmail = async (userEmail, token) => {
       },
     },
   );
-  // console.log("STATUS:", res.status);
-  // console.log("CONTENT-TYPE:", res.headers.get("content-type"));
+  console.log("STATUS:", res.status);
+  console.log("CONTENT-TYPE:", res.headers.get("content-type"));
   const data = await res.json();
   return data;
 };

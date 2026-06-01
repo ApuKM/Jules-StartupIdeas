@@ -14,7 +14,7 @@ const ProfilePage = async () => {
   const user = session?.user;
   // console.log(session.user)
   return (
-    <div className="min-h-[60vh] mt-12 md:mt-18 space-y-5">
+    <div className="min-h-[60vh] mt-12 md:mt-18 space-y-5 max-w-7xl p-4 sm:p-6 lg:p-8">
       <ProfileCard user={user} />
       <ProfileModal user={user} />
     </div>

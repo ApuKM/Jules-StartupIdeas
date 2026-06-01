@@ -1,13 +1,14 @@
+import { Button } from "@heroui/react";
 import { Chip } from "@heroui/react";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
-import { IoPeopleOutline } from "react-icons/io5";
 import { MdOutlineDescription } from "react-icons/md";
 import { RiMoneyDollarCircleLine } from "react-icons/ri";
 
 const IdeaCard = ({ fIdea }) => {
   const {
+    _id,
     imageURL,
     category,
     ideaTitle,
@@ -60,6 +61,11 @@ const IdeaCard = ({ fIdea }) => {
             <RiMoneyDollarCircleLine />
             {estimatedBudget.toLocaleString()}
           </span>
+          <Link href={`/ideas/${_id}`}>
+            <Button className="font-semibold rounded-xl px-6 bg-(--primary)">
+              Learn More
+            </Button>
+          </Link>
         </div>
       </div>
     </div>
