@@ -107,8 +107,8 @@ const Comments = ({ ideaId }) => {
 
                   {c.userEmail === user?.email && (
                     <div className="flex justify-end mt-3 gap-2">
-                      <EditModal currentComment={c.comment} commentId={c._id} ideaId={ideaId}/>
-                      <DeleteAlert commentId={c._id} ideaId={ideaId}/>
+                      <EditModal currentComment={c.comment} commentId={c._id} comments={comments} setComments={setComments}/>
+                      <DeleteAlert commentId={c._id} comments={comments} setComments={setComments}/>
                     </div>
                   )}
                 </div>

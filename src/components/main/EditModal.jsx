@@ -5,17 +5,18 @@ import { Button, Input, Modal, Surface, TextField } from "@heroui/react";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 
-export function EditModal({ currentComment, commentId, ideaId }) {
+export function EditModal({
+  currentComment,
+  commentId,
+  comments,
+  setComments,
+}) {
   const [editComment, setEditComment] = useState(currentComment);
   const router = useRouter();
   //   console.log(id)
   const handleEdit = async () => {
     const { data: tokenData } = await authClient.token();
-    // console.log(tokenData)
-    // console.log(editComment)
-    const payload = {
-      editComment,
-    };
+
     const res = await fetch(
       `${process.env.NEXT_PUBLIC_API_URL}/comments/edit/${commentId}`,
       {
@@ -24,17 +25,24 @@ export function EditModal({ currentComment, commentId, ideaId }) {
           "Content-Type": "application/json",
           authorization: `Bearer ${tokenData.token}`,
         },
-        body: JSON.stringify(payload),
+        body: JSON.stringify({ editComment }),
       },
     );
-    // console.log(res);
-    if (res.ok) {
-      router.refresh();
-    }
+
     if (!res.ok) {
       toast.error("Something went wrong!");
+      return;
     }
+
+    const data = await res.json();
+
+    setComments((prev) =>
+      prev.map((comment) => (comment._id === data._id ? data : comment)),
+    );
+
+    router.refresh(); // optional fallback only
   };
+  
   return (
     <Modal>
       <Button variant="outline">Edit Comment</Button>

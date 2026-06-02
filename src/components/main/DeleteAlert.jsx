@@ -5,7 +5,7 @@ import { getCommentsWithIdeaId } from "@/lib/data";
 import { AlertDialog, Button } from "@heroui/react";
 import { useRouter } from "next/navigation";
 
-export function DeleteAlert({ commentId, ideaId }) {
+export function DeleteAlert({ commentId, setComments }) {
   const router = useRouter();
   const handleDelete = async () => {
     const { data: tokenData } = await authClient.token();
@@ -19,12 +19,13 @@ export function DeleteAlert({ commentId, ideaId }) {
         },
       },
     );
-    if (res.ok) {
-      router.refresh();
-    }
+
     if (!res.ok) {
       toast.error("Something went wrong!");
+      return;
     }
+
+    setComments((prev) => prev.filter((comment) => comment._id !== commentId));
   };
   return (
     <AlertDialog>

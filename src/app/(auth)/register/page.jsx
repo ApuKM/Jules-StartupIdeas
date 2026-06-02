@@ -3,12 +3,23 @@
 import { Button, Input } from "@heroui/react";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import toast from "react-hot-toast";
 import { authClient } from "@/lib/auth-client";
+import { useState } from "react";
 
 export default function Register() {
+  const [value, setValue] = useState("");
   const router = useRouter();
+  const searchParams = useSearchParams();
+  const redirectTo = searchParams.get("redirect");
+
+  const hasUppercase = /[A-Z]/.test(value);
+  const hasLowercase = /[a-z]/.test(value);
+  const hasMinLength = value.length >= 6;
+  const isInvalid =
+    value.length > 0 && (!hasUppercase || !hasLowercase || !hasMinLength);
+
   const handleRegister = async (e) => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
@@ -28,7 +39,7 @@ export default function Register() {
       toast.error(`Registration failed. ${error.message}`);
       return;
     }
-    router.push("/");
+    router.push(redirectTo || "/");
   };
 
   return (
@@ -105,12 +116,20 @@ export default function Register() {
                   Password
                 </label>
                 <Input
+                  value={value}
+                  onChange={(e) => setValue(e.target.value)}
                   id="password"
                   required
                   placeholder="••••••••"
                   type="password"
                   name="password"
                   className="border-2 border-slate-200 hover:border-blue-600/50 focus-within:border-blue-600 transition-all duration-300 h-14 bg-white w-full rounded-2xl"
+                  isInvalid={isInvalid}
+                  errorMessage={
+                    isInvalid
+                      ? "Password must be at least 6 characters and include uppercase and lowercase letters."
+                      : ""
+                  }
                 />
               </div>
 

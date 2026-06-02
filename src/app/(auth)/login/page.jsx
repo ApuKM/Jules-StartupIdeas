@@ -43,6 +43,7 @@ export default function Login() {
     if (error) {
       toast.error("Google login failed");
     }
+    router.push(redirectTo || "/");
   };
 
   return (
@@ -62,6 +63,7 @@ export default function Login() {
             <div className="space-y-4">
               <Button
                 onClick={handleLoginWithGoogle}
+                type="button"
                 variant="ghost"
                 className="w-full h-12 font-bold rounded-2xl border-slate-200 hover:bg-slate-50 transition-colors gap-3"
               >
