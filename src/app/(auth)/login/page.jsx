@@ -38,8 +38,9 @@ export default function Login() {
   const handleLoginWithGoogle = async () => {
     const { error } = await authClient.signIn.social({
       provider: "google",
-      callbackURL: redirectTo,
+      callbackURL: redirectTo || "/",
     });
+    console.log(error)
     if (error) {
       toast.error("Google login failed");
     }
