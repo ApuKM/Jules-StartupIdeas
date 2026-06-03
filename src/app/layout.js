@@ -1,12 +1,12 @@
 import { Poppins } from "next/font/google";
 import "./globals.css";
 import { Toaster } from "react-hot-toast";
+import { Providers } from "./providers";
 
 const poppins = Poppins({
   subsets: ["latin"],
-  weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"]
-})
-
+  weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
+});
 
 export const metadata = {
   title: "Create Next App",
@@ -17,12 +17,13 @@ export default function RootLayout({ children }) {
   return (
     <html
       lang="en"
+      suppressHydrationWarning
       className={`${poppins.className} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col">
-        {children}
+      <body className="min-h-full flex flex-col bg-background text-foreground">
+        <Providers>{children}</Providers>
         <Toaster />
-        </body>
+      </body>
     </html>
   );
 }

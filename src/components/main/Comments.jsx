@@ -54,7 +54,7 @@ const Comments = ({ ideaId }) => {
       <CardHeader>
         <div className="text-center space-y-2 w-full">
           <h2 className="text-3xl font-semibold">Comments</h2>
-          <p>Add, edit, and delete your own comments</p>
+          <p className="text-slate-600">Write something about this idea</p>
         </div>
       </CardHeader>
 
@@ -107,7 +107,7 @@ const Comments = ({ ideaId }) => {
 
                   {c.userEmail === user?.email && (
                     <div className="flex justify-end mt-3 gap-2">
-                      <EditModal currentComment={c.comment} commentId={c._id} comments={comments} setComments={setComments}/>
+                      <EditModal currentComment={c.comment} commentId={c._id} setComments={setComments}/>
                       <DeleteAlert commentId={c._id} comments={comments} setComments={setComments}/>
                     </div>
                   )}

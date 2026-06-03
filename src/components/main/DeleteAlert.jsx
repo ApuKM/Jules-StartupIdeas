@@ -1,7 +1,6 @@
 "use client";
 
 import { authClient } from "@/lib/auth-client";
-import { getCommentsWithIdeaId } from "@/lib/data";
 import { AlertDialog, Button } from "@heroui/react";
 import { useRouter } from "next/navigation";
 

@@ -8,7 +8,6 @@ import { useState } from "react";
 export function EditModal({
   currentComment,
   commentId,
-  comments,
   setComments,
 }) {
   const [editComment, setEditComment] = useState(currentComment);
@@ -35,12 +34,12 @@ export function EditModal({
     }
 
     const data = await res.json();
+    console.log(data)
 
     setComments((prev) =>
       prev.map((comment) => (comment._id === data._id ? data : comment)),
     );
 
-    router.refresh(); // optional fallback only
   };
   
   return (

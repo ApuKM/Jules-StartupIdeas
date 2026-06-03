@@ -3,9 +3,9 @@
 import { ArrowRightFromSquare, Gear } from "@gravity-ui/icons";
 import { Avatar, Dropdown, Label } from "@heroui/react";
 import Link from "next/link";
+import { ThemeSwitch } from "./ThemeSwitch";
 
 export function ProfileDropDown({ user, handleLogOut }) {
-
   return (
     <>
       <Dropdown>
@@ -40,6 +40,9 @@ export function ProfileDropDown({ user, handleLogOut }) {
                 <p className="text-sm leading-5 font-medium">{user?.name}</p>
                 <p className="text-xs leading-none text-muted">{user?.email}</p>
               </div>
+              <div className="justify-end">
+                <ThemeSwitch />
+              </div>
             </div>
           </div>
 
@@ -47,14 +50,11 @@ export function ProfileDropDown({ user, handleLogOut }) {
             <Dropdown.Item id="dashboard" textValue="Dashboard">
               <Label>Dashboard</Label>
             </Dropdown.Item>
-            
-            <Dropdown.Item
-              id="profile"
-              textValue="Profile"
-            >
-            <Link href={"/profile"}>
-              <Label>Profile</Label>
-            </Link>
+
+            <Dropdown.Item id="profile" textValue="Profile">
+              <Link href={"/profile"}>
+                <Label>Profile</Label>
+              </Link>
             </Dropdown.Item>
 
             <Dropdown.Item id="settings" textValue="Settings">
@@ -76,7 +76,6 @@ export function ProfileDropDown({ user, handleLogOut }) {
           </Dropdown.Menu>
         </Dropdown.Popover>
       </Dropdown>
-
     </>
   );
 }
