@@ -61,9 +61,8 @@ export default async function DashboardPage() {
           Manage and review all your submitted ideas in one place.
         </p>
       </div>
-      <div className="grid grid-cols-1 gap-8 ">
         {/* Ideas Section */}
-        <div className="">
+        <div className="border">
           {userIdeas?.length === 0 ? (
             <div className="rounded-3xl border border-dashed border-slate-300 bg-white p-12 text-center shadow-sm">
               <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-slate-100">
@@ -98,7 +97,7 @@ export default async function DashboardPage() {
               </div>
             </div>
           ) : (
-            <div className="grid grid-cols-1 gap-5">
+            <div className="flex flex-col gap-5 ">
               {userIdeas?.map((myIdea) => (
                 <div
                   key={myIdea?._id}
@@ -150,7 +149,6 @@ export default async function DashboardPage() {
             </div>
           )}
         </div>
-      </div>
     </div>
   );
 }

@@ -4,7 +4,6 @@ import React from "react";
 
 const ProfileCard = ({user}) => {
   return (
-    <div>
       <div className="lg:col-span-1">
         <div className="relative overflow-hidden rounded-3xl border border-slate-200 bg-white/80 backdrop-blur-xl shadow-lg shadow-slate-200/60 p-6">
           <div className="absolute inset-x-0 top-0 h-24 bg-linear-to-r from-indigo-500 via-blue-500 to-blue-800" />
@@ -39,7 +38,6 @@ const ProfileCard = ({user}) => {
           </div>
         </div>
       </div>
-    </div>
   );
 };
 

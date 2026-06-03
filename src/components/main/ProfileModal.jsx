@@ -1,11 +1,10 @@
 "use client";
 
-import { editProfile } from "@/lib/actions";
 import { authClient } from "@/lib/auth-client";
 import { Button, Input, Label, Modal, Surface, TextField } from "@heroui/react";
 import toast from "react-hot-toast";
 
-export function ProfileModal({ user }) {
+export function ProfileModal({ user, editProfile }) {
   // console.log(user)
   const handleUpdateProfile = async (formData) => {
     try {
@@ -25,7 +24,6 @@ export function ProfileModal({ user }) {
   };
 
   return (
-    <div>
       <Modal>
         <div className="flex justify-center">
           <Button variant="secondary">Edit Your Profile</Button>
@@ -86,6 +84,5 @@ export function ProfileModal({ user }) {
           </Modal.Container>
         </Modal.Backdrop>
       </Modal>
-    </div>
   );
 }

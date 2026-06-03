@@ -5,11 +5,7 @@ import { Button, Input, Modal, Surface, TextField } from "@heroui/react";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 
-export function EditModal({
-  currentComment,
-  commentId,
-  setComments,
-}) {
+export function EditModal({ currentComment, commentId, setComments }) {
   const [editComment, setEditComment] = useState(currentComment);
   const router = useRouter();
   //   console.log(id)
@@ -28,20 +24,25 @@ export function EditModal({
       },
     );
 
+    // console.log(res);
+
     if (!res.ok) {
       toast.error("Something went wrong!");
       return;
     }
 
-    const data = await res.json();
-    console.log(data)
+    // const data = await res.json();
+    // console.log("data from edit:", data)
 
     setComments((prev) =>
-      prev.map((comment) => (comment._id === data._id ? data : comment)),
+      prev.map((comment) =>
+        comment._id === commentId
+          ? { ...comment, comment: editComment }
+          : comment,
+      ),
     );
-
   };
-  
+
   return (
     <Modal>
       <Button variant="outline">Edit Comment</Button>

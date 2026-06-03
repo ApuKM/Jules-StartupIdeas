@@ -112,12 +112,12 @@ const Navbar = () => {
                 </div>
               ) : (
                 <div className="flex items-center gap-5">
-                  <Link href={"/login"}>
+                  <Link href="/login">
                     <Button variant="ghost" className={"font-medium"}>
                       Login
                     </Button>
                   </Link>
-                  <Link href={"/register"}>
+                  <Link href="/register">
                     <Button className={"bg-(--primary) text-white font-medium"}>
                       Join Free
                     </Button>

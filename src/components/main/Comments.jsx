@@ -90,7 +90,7 @@ const Comments = ({ ideaId }) => {
 
                 <div className="flex-1">
                   <div className="flex items-center gap-3">
-                    <p className="font-medium">{c.userName}</p>
+                    <p className="font-medium">{c?.userName}</p>
 
                     <span className="text-xs text-gray-500">
                       {c.createdAt?.split("T")[0]}
@@ -103,12 +103,12 @@ const Comments = ({ ideaId }) => {
                     )}
                   </div>
 
-                  <p className="mt-4 text-sm">{c.comment}</p>
+                  <p className="mt-4 text-sm">{c?.comment}</p>
 
                   {c.userEmail === user?.email && (
                     <div className="flex justify-end mt-3 gap-2">
                       <EditModal currentComment={c.comment} commentId={c._id} setComments={setComments}/>
-                      <DeleteAlert commentId={c._id} comments={comments} setComments={setComments}/>
+                      <DeleteAlert commentId={c._id} setComments={setComments}/>
                     </div>
                   )}
                 </div>
